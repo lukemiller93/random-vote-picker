@@ -2,8 +2,11 @@
 import AddEntry from "./components/AddEntry.svelte";
 import Button from "./components/Button.svelte";
 import EntryListings from "./components/EntryListings.svelte";
-
+import { winner } from './stores/winner'
+import { scale, fade } from 'svelte/transition'
   export let name: string;
+
+  console.log($winner)
 </script>
 
 <main>
@@ -25,6 +28,12 @@ import EntryListings from "./components/EntryListings.svelte";
     <!-- @todo buttons -->
     <Button />
   </section>
+  {#if $winner !== ''}
+    <section in:scale class="winner">
+      <h2>The winner is: {$winner}</h2>
+    </section>
+  {/if}
+
 </main>
 
 <style>

@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 
-interface Constestant {
+export interface Constestant {
   name: string;
   entries: number;
   id: string;
@@ -14,4 +14,4 @@ const parsed = JSON.parse(retrieved)
 // Set the stored value or a sane default
 export const contestants = writable(parsed === null ? [] : parsed)
 
-contestants.subscribe((value) => localStorage.setItem(itemName, JSON.stringify(value)))
+// contestants.subscribe((value) => localStorage.setItem(itemName, JSON.stringify(value)))

@@ -1,40 +1,49 @@
 <script lang="ts" context="module">
   import newUniqueId from 'locally-unique-id-generator'
+import { onMount, tick } from 'svelte';
 </script>
 
 <script lang="ts">
-import { contestants } from "../stores/contestants";
-import { entry } from "../stores/entry";
+import { Constestant, contestants } from "../stores/contestants";
+
+let name = ''
+let entries = 0
+let ref
+let entry: Constestant
+$: entry = {
+  name, entries, id: newUniqueId()
+}
 
 
 
-  function handleSubmit(e) {
-    $entry.id = newUniqueId()
-    console.log(entry)
-    let cArr
-    contestants.subscribe(v => cArr = v )
+  async function  handleSubmit(e) {
+    const entryWithId = {
+      ...entry,
+      id: newUniqueId()
+    }
+    contestants.update((currentContestants) => {
+        entry.name = ''
+        entry.entries = 0
+        return [entryWithId, ...currentContestants]
+      })
+      localStorage.setItem('contestants', JSON.stringify($contestants))
 
-    console.log([...cArr, $entry])
-    // contestants.update(v =>([...v, entry]) )
-
+    await tick()
+    ref.focus()
   }
+
+  onMount(() => ref.focus())
 
 </script>
 
 <form method="get" on:submit|preventDefault={handleSubmit}  action="#">
-  <label>Name<input type="text" name="name" bind:value={$entry.name} id="name" /></label>
+  <label>Name<input type="text" name="name" bind:this={ref} bind:value={entry.name} id="name" /></label>
   <label>
-    Vote Count
-  <input type="number" min="0" name="entries" id="entries" bind:value={$entry.entries} /></label>
-  <!-- <input type="hidden" min="0" name="uid" id="uid" bind:value={$entry.id} /></label> -->
-  <button type="submit">Add Contestant</button>
+    Entry Count
+  <input type="number" min="0" name="entries" id="entries" bind:value={entry.entries} /></label>
+  <button type="submit" disabled={entry.name === '' || entry.entries < 1 }>Add Contestant</button>
 </form>
-<!-- {#each $contestants as contestant}
-  <p>{contestant.name}</p>
-  <p>{contestant.votes} entries</p>
-{/each} -->
-<p>{$entry.name}</p>
-<p>{$entry.entries}</p>
+
 
 
 <style>
