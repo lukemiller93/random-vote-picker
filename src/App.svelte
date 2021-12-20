@@ -9,8 +9,8 @@ import { scale, fade } from 'svelte/transition'
   console.log($winner)
 </script>
 
+<h1>Giveaway/Sweepstakes Winner Generator</h1>
 <main>
-  <h1>Giveaway/Sweepstakes Winner Generator</h1>
   <p>Use this app to pick a random winner for a giveaway, etc.</p>
   <ol>
     <li>Add names and entry count for each constestant.</li>
@@ -50,8 +50,12 @@ import { scale, fade } from 'svelte/transition'
 
   h1 {
     color: #ff3e00;
+    max-width: 90vw;
+    margin: auto;
+    word-break: break-word;
+    text-align: center;
     text-transform: uppercase;
-    font-size: 4em;
+    font-size:3em;
     font-weight: 100;
   }
 
