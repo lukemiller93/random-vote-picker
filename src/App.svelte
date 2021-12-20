@@ -57,10 +57,16 @@ import { scale, fade } from 'svelte/transition'
     text-transform: uppercase;
     font-size:3em;
     font-weight: 100;
+
+
   }
 
 
   @media (min-width: 640px) {
+
+    h1 {
+      font-size: 4em;
+    }
     main {
       max-width: 800px;
     }
