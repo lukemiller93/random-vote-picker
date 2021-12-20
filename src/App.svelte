@@ -10,7 +10,7 @@ import { scale, fade } from 'svelte/transition'
 </script>
 
 <main>
-  <h1>Random Vote Picker</h1>
+  <h1>Giveaway/Sweepstakes Winner Generator</h1>
   <p>Use this app to pick a random winner for a giveaway, etc.</p>
   <ol>
     <li>Add names and vote count for each entry.</li>
