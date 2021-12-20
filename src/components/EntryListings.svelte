@@ -27,9 +27,12 @@ import { scale, fade } from 'svelte/transition'
     margin-bottom: 4rem;
   }
   .entry {
+    width: 100%;
+    margin: auto;
+    max-width: 400px;
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 
